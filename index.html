@@ -1,19 +1,40 @@
 <!DOCTYPE html>
 <html>
-  <head>
+<head>
     <meta charset="utf-8">
     <title>Hello, World! • A-Frame</title>
     <meta name="description" content="Hello, World! • A-Frame">
     <script src="https://aframe.io/releases/latest/aframe.min.js"></script>
-  </head>
-  <body>
-    <a-scene>
-      <a-sphere position="0 1.25 -1" radius="1.25" color="#EF2D5E"></a-sphere>
-      <a-cube position="-1 0.5 1" rotation="0 45 0" width="1" height="1" depth="1"  color="#4CC3D9"></a-cube>
-      <a-cylinder position="1 0.75 1" radius="0.5" height="1.5" color="#FFC65D"></a-cylinder>
-      <a-plane rotation="-90 0 0" width="4" height="4" color="#7BC8A4"></a-plane>
+    <script src="tinytim.min.js"></script>
+</head>
+<body>
+<a-scene id="scene">
+    <a-camera default id="bmo"></a-camera>
+    <a-sky src="sky2.jpg"></a-sky>
+</a-scene>
+<script language="JavaScript">
+    var scene = document.getElementsByTagName("a-scene")[0];
+    var placeholder_url = "http://lorempixel.com/256/256/cats/";
+    var cube_template = '<a-cube look-at="#bmo" position="{{x}} {{y}} {{z}}" height="{{scale}}" width="{{scale}}" src="{{url}}?x={{x}}&y={{y}}&z={{z}}"></a-cube>';
+    var scale = 1.5;
+    for (var x=-3; x<3; x=x+2){
+        for (var y=-3; y<3; y = 2+y){
+            for (var z=-3; z<3; z = 2+z){
+                var tmpl_dict = {
+                    x:x*scale,
+                    y:y*scale,
+                    z:z*scale,
+                    url:placeholder_url,
+                    scale:scale
+                };
+                var cube_code = tim(cube_template, tmpl_dict);
+                var cube_elem = document.createElement('a-entity');
+                cube_elem.innerHTML = cube_code;
+                scene.appendChild(cube_elem);
+            }
+        }
+    }
 
-      <a-sky color="#ECECEC"></a-sky>
-    </a-scene>
-  </body>
+</script>
+</body>
 </html>
