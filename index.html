@@ -15,7 +15,7 @@
 <script language="JavaScript">
     var scene = document.getElementsByTagName("a-scene")[0];
     var placeholder_url = "http://lorempixel.com/256/256/cats/";
-    var cube_template = '<a-cube look-at="#bmo" position="{{x}} {{y}} {{z}}" height="{{scale}}" width="{{scale}}" src="{{url}}?x={{x}}&y={{y}}&z={{z}}"></a-cube>';
+    var cube_template = '<a-cube look-at="#bmo" position="{{x}} {{y}} {{z}}" height="{{scale}}" width="{{scale}}" depth="{{scale}}" src="{{url}}?x={{x}}&y={{y}}&z={{z}}"></a-cube>';
     var scale = 1.5;
     for (var x=-5; x<5; x=x+2){
         for (var y=-5; y<5; y = 2+y){
